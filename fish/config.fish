@@ -22,4 +22,15 @@ if status is-interactive
     alias gloga='git log --oneline --decorate --all'
     alias ls='ls -a --color=auto'
     alias lsal='ls -al --color=auto'
+
+    # yazi wrapper function so when you hit q to quit you drop to yazi's cwd
+    # rather than the directory you were in when you launched yazi
+    function y
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        command yazi $argv --cwd-file="$tmp"
+        if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+            builtin cd -- "$cwd"
+        end
+        command rm -f -- "$tmp"
+    end
 end
