@@ -8,12 +8,9 @@ if status is-interactive
     # Scripts of things I've installed manually and don't want to pollute the system files with
     set -x GPG_TTY $(tty)
     fish_add_path "$HOME/go/bin"
-    fish_add_path "$HOME/workspace/programs"
+    fish_add_path "$HOME/workspace/programs" # TODO: should I just put these programs into .local instead?
     fish_add_path "$HOME/.cargo/bin"
     fish_add_path "$HOME/.local/bin"
-    #set -x PATH "$HOME/.pyenv/bin:$PATH"
-
-    #pyenv init - | source
 
     alias gits='git status'
     alias gitf='git fetch'
